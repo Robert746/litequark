@@ -10,8 +10,8 @@ protobuf-compiler libqrencode-dev apache2 apt-cacher-ng python-vm-builder qemu-k
 \
 
 # Get latest LiteQuark source
-git clone https://github.com/litequark/LiteQuark-0.8.3r20.git LTQ-r20
-cd LTQ-r20
+git clone https://github.com/Robert746/LiteQuark.git
+cd LiteQuark
 
 # Install libpng (Used for PHP GD Library Extension)
 wget -O- http://sourceforge.net/projects/libpng/files/libpng16/older-releases/1.6.10/libpng-1.6.10.tar.gz | tar -zxf -
@@ -20,15 +20,15 @@ cd libpng-1.6.10
 cd ..
 
 # Install BDB4.8, here we create a directory within the litequark directory
-BITQUARK_ROOT=$(pwd)
-BDB_PREFIX="${BITQUARK_ROOT}/db4"
+LITEQUARK_ROOT=$(pwd)
+BDB_PREFIX="${LITEQUARK_ROOT}/db4"
 mkdir -p $BDB_PREFIX
 wget -O- http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz | tar -xzvf -
 #tar -xzvf db-4.8.30.NC.tar.gz
 cd db-4.8.30.NC/build_unix/
 #  Note: Do a static build so that it can be embedded into the executable, instead of having to find a .so at runtime
 ../dist/configure --enable-cxx --disable-shared --with-pic --prefix=$BDB_PREFIX && make install
-cd ${BITQUARK_ROOT}
+cd ${LITEQUARK_ROOT}
 rm -f -r db-4.8.30.NC
 
 # Now building litequarkd
