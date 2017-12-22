@@ -35,9 +35,9 @@ CTxMemPool mempool;
 unsigned int nTransactionsUpdated = 0;
 
 map<uint256, CBlockIndex*> mapBlockIndex;
-uint256 hashGenesisBlock("0x00000a7d57d1e8984c51ee494d482f98c83cd7a8b439e31344f4ffeb72eadd34");
+uint256 hashGenesisBlock("0x00000ee194cc9e91ee74f6f3cdc9e68e501f673418055aa7ff55f2aabb3b038d");
 uint256 hashGenesisBlockTestNet("0x");
-static const unsigned int timeGenesisBlock = 1388710861;
+static const unsigned int timeGenesisBlock = 0;
 static CBigNum bnProofOfWorkLimit(~uint256(0) >> 20);
 CBlockIndex* pindexGenesisBlock = NULL;
 int nBestHeight = -1;
@@ -2934,11 +2934,11 @@ bool LoadBlockIndex()
 {
     if (fTestNet)
     {
-        pchMessageStart[0] = 0x02;
-        pchMessageStart[1] = 0x1B;
+        pchMessageStart[0] = 0xc2;
+        pchMessageStart[1] = 0xd3;
         pchMessageStart[2] = 0x39;
         pchMessageStart[3] = 0xF8;
-        hashGenesisBlock = uint256("0x00000a7d57d1e8984c51ee494d482f98c83cd7a8b439e31344f4ffeb72eadd34");
+        hashGenesisBlock = uint256("0x");
     }
 
     //
@@ -2992,7 +2992,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CBigNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = nGenesisBlockRewardCoin;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("50238afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("32438afdb0fe5548271967f1a67130b7105cd6a828e03909a67962e0ea1f61deb649f6bc3f4cef38c4f35504e51ec112de5c384df7ba0b8d578a4c702b6bf11d5f") << OP_CHECKSIG;
         CBlock block;
         block.vtx.push_back(txNew);
         block.hashPrevBlock = 0;
@@ -3000,13 +3000,13 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         block.nVersion = 112;
         block.nTime    = timeGenesisBlock;
         block.nBits    = bnProofOfWorkLimit.GetCompact();
-        block.nNonce   = 500452;
+        block.nNonce   = 438003;
 
         if (fTestNet)
         {
 			pszTimestamp="Make me proud!";
-            block.nTime    = 1513023821;
-            block.nNonce   = 500452;
+            block.nTime    = 1513942348;
+            block.nNonce   = 0;
         }
 
         //// debug print
@@ -3020,7 +3020,7 @@ CBlock(hash=00000e5e37c42d6b67d0934399adfb0fa48b59138abb1a8842c88f4ca3d4ec96, ve
         printf("%s\n", hashGenesisBlock.ToString().c_str());
         printf("%s\n", block.hashMerkleRoot.ToString().c_str());
         block.print();
-        assert(block.hashMerkleRoot == uint256("0xc539b63237c519ca2506380c33bd9090effd16891eba88f1c41a828dbee3f03e"));
+        assert(block.hashMerkleRoot == uint256("0x80f1400255039f35d176db85c19e666bc566a399e75098d8af16e97b580d06dd"));
         assert(hash == hashGenesisBlock);
 
         // Start new block file
@@ -4645,7 +4645,7 @@ CBlockTemplate* CreateNewBlock(CReserveKey& reservekey)
         pblock->hashPrevBlock  = pindexPrev->GetBlockHash();
         pblock->UpdateTime(pindexPrev);
         pblock->nBits          = GetNextWorkRequired(pindexPrev, pblock);
-        pblock->nNonce         = 0;
+        pblock->nNonce         = 438003;
 
         // Calculate nVvalue dependet nBits
         pblock->vtx[0].vout[0].nValue = GetBlockValue(pindexPrev->nHeight+1, nFees, pblock->nBits);
