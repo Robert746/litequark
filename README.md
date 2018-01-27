@@ -1,4 +1,4 @@
-What is LiteQuark (LTQ)?
+﻿What is LiteQuark (LTQ)?
 
 LiteQuark is the result of merging Litecoin with the super secure hashing power of Quarkcoin.  It uses the super secure 'quark' algorithm made up of 9 rounds of hashing from 6 hashing functions (blake, bmw, grøstl, JH, keccak, skein). 3 rounds apply a random hashing function. LTQ has a block time of 30 seconds and block rewards of 2.5 LTQ per block. The block rewards will never fall below 0.1 LTQ. Retargeting every block using DarkGravityWave3 and halving every 4 years. LTQ is CPU mined and ASIC resistant, so anyone can mine it without the need of running expensive high-end hardware.
 
@@ -13,4 +13,4 @@ LiteQuark is the result of merging Litecoin with the super secure hashing power 
 
 
 
-RPCPORT = 9108
+RPCPORT = 91084
